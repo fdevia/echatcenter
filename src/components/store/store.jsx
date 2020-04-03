@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import productsg from "../../data/products";
 //import Cart from "../cart/cart";
 import { CartContext } from "../cart/context";
-
+import "./store.css";
 export default function Store() {
   //const devReact = productsg.filter(item => item.categoria.includes("Linea Pactica"))
   /*
@@ -12,6 +12,8 @@ export default function Store() {
   */
   const cartCtx = useContext(CartContext);
   var products; // = productsg;
+  //cartCtx.changeFilter("Linea Práctica");
+  //cartCtx.filter("Linea Práctica");
   if (cartCtx.filter !== "All") {
     products = productsg.filter(item => item.categoria === cartCtx.filter);
   } else {
@@ -24,19 +26,20 @@ export default function Store() {
         <div key={product.sku}>
           <div>
             <img
-              src={`/images/${product.sku}.jpg`}
+              src={`/images/${product.sku}.webp`}
               alt={product.name}
-              width={50}
+              width={200}
             />
           </div>
-          <div>{product.name}</div>
+          <div className="name">{product.name}</div>
           <div>
-            <button onClick={() => cartCtx.addToCart(product)}>
-              Add to cart
+            <button className="add" onClick={() => cartCtx.addToCart(product)}>
+              Adicionar al carro
             </button>
           </div>
         </div>
       ))}
+      {/*
       <div>
         <button onClick={() => cartCtx.changeFilter("Linea Practica")}>
           Activate Filter
@@ -46,7 +49,7 @@ export default function Store() {
         <button onClick={() => cartCtx.changeFilter("All")}>
           Desactivate Filter
         </button>
-      </div>
+      </div>*/}
     </div>
   );
 }

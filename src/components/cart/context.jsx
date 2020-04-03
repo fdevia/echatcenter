@@ -4,7 +4,7 @@ export const CartContext = createContext(null);
 
 export default function CartProvider({ children }) {
   const [items, setItems] = useState([]);
-  const [filter, setFilter] = useState("All");
+  const [filter, setFilter] = useState("Linea Práctica");
   const [qtyItemsCart, setQtyItemsCart] = useState(0);
 
   function addToCart(item) {

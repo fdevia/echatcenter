@@ -41,7 +41,9 @@ export default function Cart() {
             <th>Name</th>
             <th>Image</th>
             <th>Quanity</th>
+            <th>Uds/Kilos</th>
             <th>Price</th>
+            <th>Unidad</th>
             <th>Eliminar</th>
             <th>Mas</th>
             <th>Menos</th>
@@ -54,9 +56,9 @@ export default function Cart() {
               <td>{item.name}</td>
               <td>
                 <img
-                  src={`/images/${item.sku}.jpg`}
+                  src={`/images/${item.sku}.webp`}
                   alt={item.name}
-                  width={50}
+                  width={200}
                 />
               </td>
               <td align="center">
@@ -69,14 +71,20 @@ export default function Cart() {
                   pattern="[0-9]*"
                   value={item.quantity}
                   //value={item.quantity}
-                  //onChange={e => {
-                  //bug
-                  //  item.quantity = Number(e.target.value);
+                  onChange={e => {
+                    item.quantity = Number(e.target.value);
+                  }}
                   //setState(Number(e.target.value));
                   //}}
                 ></input>
               </td>
+              <td align="center">
+                <input type="checkbox"></input>
+              </td>
               <td align="center">{formatPrice(item.price)}</td>
+              <td align="center">
+                <label>Unidad</label>
+              </td>
               <td align="center">
                 <button onClick={() => ctx.delItemFromCart(item.sku)}>
                   Eliminar Item
@@ -100,13 +108,42 @@ export default function Cart() {
         <tfoot>
           <tr>
             <td style={{ textAlign: "right" }} colSpan={4}>
-              <label>Seleccione Sucursal: </label>
+              <button onClick={ctx.vaciarCart}>Vaciar Carro</button>
+            </td>
+          </tr>
+
+          <tr>
+            <td style={{ textAlign: "right" }} colSpan={4}>
+              <label>Seleccione Sucursal para su descuento si aplica: </label>
               <select id="select-input">
                 <option value="1">Unicentro</option>
                 <option value="2">Chico</option>
                 <option value="3">Chapinero</option>
+                <option value="4">cedritos</option>
+                <option value="5">Chia</option>
+                <option value="6">Centro</option>
               </select>
-              <button onClick={ctx.vaciarCart}>Vaciar Carro</button>
+            </td>
+          </tr>
+          <tr>
+            <td style={{ textAlign: "right" }} colSpan={4}>
+              <label style={{ textAlign: "left" }}>Nombre</label>
+              <button onClick={ctx.vaciarCart}>Nombre</button>
+            </td>
+          </tr>
+          <tr>
+            <td style={{ textAlign: "right" }} colSpan={4}>
+              <button onClick={ctx.vaciarCart}>Direccion</button>
+            </td>
+          </tr>
+          <tr>
+            <td style={{ textAlign: "right" }} colSpan={4}>
+              <button onClick={ctx.vaciarCart}>Telefono</button>
+            </td>
+          </tr>
+          <tr>
+            <td style={{ textAlign: "right" }} colSpan={4}>
+              <button onClick={ctx.vaciarCart}>Observacion</button>
             </td>
           </tr>
           <tr>
