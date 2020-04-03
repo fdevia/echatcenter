@@ -10,6 +10,7 @@ function totalPrice(items) {
 }
 
 export default function Cart() {
+  //const [state, setState] = useState(0);
   //const [stripe, setStripe] = useState(null)
   const ctx = useContext(CartContext);
 
@@ -18,19 +19,7 @@ export default function Cart() {
     if (window.Stripe) setStripe(window.Stripe(stripeToken))
   }, [stripeToken])
  */
-  /*
-  function eliminarItem(e, sku) {
-    e.preventDefault();
-    console.log(sku + "  ");
-    //console.log(ctx.items);
-    let buscado = ctx.items.find(item => item.sku === sku);
-    const index = ctx.items.indexOf(buscado);
-    if (index > -1) {
-      ctx.items.splice(index, 1);
-    }
-    console.log("Eliminando");
-  }
-*/
+
   function checkout() {
     /*
     stripe.redirectToCheckout({
@@ -70,8 +59,24 @@ export default function Cart() {
                   width={50}
                 />
               </td>
-              <td>{item.quantity}</td>
-              <td>{formatPrice(item.price)}</td>
+              <td align="center">
+                <input
+                  type="number"
+                  step="1"
+                  min="0"
+                  max="100"
+                  style={{ width: "50px" }}
+                  pattern="[0-9]*"
+                  value={item.quantity}
+                  //value={item.quantity}
+                  //onChange={e => {
+                  //bug
+                  //  item.quantity = Number(e.target.value);
+                  //setState(Number(e.target.value));
+                  //}}
+                ></input>
+              </td>
+              <td align="center">{formatPrice(item.price)}</td>
               <td align="center">
                 <button onClick={() => ctx.delItemFromCart(item.sku)}>
                   Eliminar Item
@@ -81,7 +86,7 @@ export default function Cart() {
                 <button onClick={() => ctx.addToCart(item)}>+</button>
               </td>
               <td align="center">
-                <button onClick={() => ctx.addToCart(item)}>-</button>
+                <button onClick={() => ctx.subFromItemQty(item)}>-</button>
               </td>
             </tr>
           ))}

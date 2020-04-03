@@ -5,76 +5,33 @@ export const CartContext = createContext(null);
 export default function CartProvider({ children }) {
   const [items, setItems] = useState([]);
   const [filter, setFilter] = useState("All");
-  //const [qty, setQty] = useState(1);
-  //var add = true;
-  //const [filter, setFilter] = useState("Linea Practica");
+  const [qtyItemsCart, setQtyItemsCart] = useState(0);
 
   function addToCart(item) {
-    console.log(items);
-
-    //setQty(1);
-    setItems(prevState => [...prevState, item]);
-    console.log(items);
-  }
-
-  /*
-  function delFromCart(sku) {
-    //console.log(" dddd " + item.quantity);
-    const tmp = { ...items };
-    //setItems(items.filter(item => item.sku !== sku));
-    for (let i in tmp) {
-      if (tmp[i].sku === sku) {
-        tmp[i].quantity--;
-      }
+    const tmp = [...items];
+    const found = items.find(ctxitem => ctxitem.sku === item.sku);
+    if (found) {
+      found.quantity = found.quantity + 1;
+    } else {
+      item.quantity = 1;
+      tmp.push(item);
     }
-    //setQty(-1);
-    setItems(tmp);
-    //setItems(items.filter(item => item.sku !== sku));
-    //setItems(items.filter(item));
-    //console.log(item);
-    //setItems(prevState => [...prevState, item]);
-    //add = false;
-    //const tmp = item;
-    //tmp.quantity--;
-    //setItems(items);
-    //setItems(prevState => [...prevState, item]);
-  }
-*/
-  /*
-  function addQtyToItem(sku) {
-    const tmp = { ...items };
-    //setItems(items.filter(item => item.sku !== sku));
-    for (let i in tmp) {
-      if (tmp[i].sku === sku) {
-        tmp[i].quantity++;
-      }
-    }
-    //const buscado = items.find(item => item.sku === sku);
-    //let buscado = items.find(item => {
-    //  console.log(item);
-    //  return item.sku === sku;
-    //});
+    setQtyItemsCart(qtyItemsCart + 1);
     setItems(tmp);
   }
-*/
+
+  function subFromItemQty(item) {
+    const tmp = [...items];
+    const found = items.find(ctxitem => ctxitem.sku === item.sku);
+    if (found && found.quantity >= 1) {
+      found.quantity = found.quantity - 1;
+      setQtyItemsCart(qtyItemsCart - 1);
+    }
+    setItems(tmp);
+  }
 
   function delItemFromCart(sku) {
-    //e.preventDefault();
     setItems(items.filter(item => item.sku !== sku));
-    /*
-    console.log(sku);
-    console.log(items);
-    let buscado = items.find(item => {
-      console.log(item);
-      return item.sku === sku;
-    });
-    console.log("BUSCADO", buscado);
-    const index = items.indexOf(buscado);
-    let newItems = [...items];
-    delete newItems[index];
-    //itemsWithQuantities(items);
-    setItems(newItems);
-    */
   }
 
   function vaciarCart() {
@@ -85,8 +42,13 @@ export default function CartProvider({ children }) {
     setFilter(filter);
   }
 
+  /*
   function itemsWithQuantities(items) {
-    console.log(items);
+    for (let i in items) {
+      console.log("ssss " + i + " " + items[i].name);
+      console.log("ssss " + i + " " + items[i].quantity);
+    }
+    //console.log(items[0]);
     return items.reduce((acc, item) => {
       const found = acc.find(_item => _item.sku === item.sku);
       if (found) {
@@ -99,22 +61,23 @@ export default function CartProvider({ children }) {
           price: item.price
         });
       }
-      console.log(acc);
+      //  console.log(acc);
 
       return acc;
     }, []);
   }
-
+*/
   return (
     <CartContext.Provider
       value={{
-        items: itemsWithQuantities(items),
-        itemsCount: items.length,
+        items: items,
+        itemsCount: qtyItemsCart,
         addToCart,
         filter,
         changeFilter,
         delItemFromCart,
-        vaciarCart
+        vaciarCart,
+        subFromItemQty
       }}
     >
       {children}
