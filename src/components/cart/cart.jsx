@@ -10,10 +10,7 @@ function totalPrice(items) {
 }
 
 export default function Cart() {
-  //const [state, setState] = useState(0);
-  //const [stripe, setStripe] = useState(null)
   const ctx = useContext(CartContext);
-
   /*
   useEffect(() => {
     if (window.Stripe) setStripe(window.Stripe(stripeToken))
@@ -51,7 +48,7 @@ export default function Cart() {
         </thead>
 
         <tbody>
-          {ctx.items.map(item => (
+          {ctx.items.map((item) => (
             <tr key={item.sku}>
               <td>{item.name}</td>
               <td>
@@ -71,7 +68,7 @@ export default function Cart() {
                   pattern="[0-9]*"
                   value={item.quantity}
                   //value={item.quantity}
-                  onChange={e => {
+                  onChange={(e) => {
                     item.quantity = Number(e.target.value);
                   }}
                   //setState(Number(e.target.value));
@@ -115,7 +112,7 @@ export default function Cart() {
           <tr>
             <td style={{ textAlign: "right" }} colSpan={4}>
               <label>Seleccione Sucursal para su descuento si aplica: </label>
-              <select id="select-input">
+              <select id="select-input" name="categorias">
                 <option value="1">Unicentro</option>
                 <option value="2">Chico</option>
                 <option value="3">Chapinero</option>

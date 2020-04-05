@@ -1,6 +1,16 @@
 .add {
-  color: #2e3782;
+  background-color: #2e3782;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+}
+.add:hover {
+  background-color: #bf101a;
 }
 .name {
   color: #bf101a;
+}
+.carIcon {
+  height: 25px;
+  padding: 5px;
 }
