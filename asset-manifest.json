@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/echatcenter/static/css/main.4ab57559.chunk.css",
+    "main.js": "/echatcenter/static/js/main.e2ff7821.chunk.js",
+    "main.js.map": "/echatcenter/static/js/main.e2ff7821.chunk.js.map",
+    "runtime-main.js": "/echatcenter/static/js/runtime-main.b334b6dc.js",
+    "runtime-main.js.map": "/echatcenter/static/js/runtime-main.b334b6dc.js.map",
+    "static/js/2.19bceded.chunk.js": "/echatcenter/static/js/2.19bceded.chunk.js",
+    "static/js/2.19bceded.chunk.js.map": "/echatcenter/static/js/2.19bceded.chunk.js.map",
+    "index.html": "/echatcenter/index.html",
+    "precache-manifest.1c8038b412bb05543e48302a56a623c4.js": "/echatcenter/precache-manifest.1c8038b412bb05543e48302a56a623c4.js",
+    "service-worker.js": "/echatcenter/service-worker.js",
+    "static/css/main.4ab57559.chunk.css.map": "/echatcenter/static/css/main.4ab57559.chunk.css.map",
+    "static/js/2.19bceded.chunk.js.LICENSE.txt": "/echatcenter/static/js/2.19bceded.chunk.js.LICENSE.txt",
+    "static/media/shopping-cart.svg": "/echatcenter/static/media/shopping-cart.e3bb0b96.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.b334b6dc.js",
+    "static/js/2.19bceded.chunk.js",
+    "static/css/main.4ab57559.chunk.css",
+    "static/js/main.e2ff7821.chunk.js"
+  ]
+}
