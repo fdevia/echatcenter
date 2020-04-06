@@ -3,11 +3,11 @@ import "./topbar.css";
 import { Link } from "react-router-dom";
 import { CartContext } from "../cart/context";
 import { useRef } from "react";
+import carIcon from "./shopping-cart.svg";
 
 export default function TopBar() {
   const cartCtx = useContext(CartContext);
   const comboRef = useRef();
-  var selectedValue;
   const Catalogo = [
     "Linea Práctica",
     "Linea Express",
@@ -26,12 +26,18 @@ export default function TopBar() {
   return (
     <div className="layout top-bar">
       <div className="wrapper">
-        <div>
-          <img src={`/images/PolloAndinoLogo.webp`} alt={"name"} width={100} />
-        </div>
-        <div className="section">Pollo Andino S.A. Domicilios</div>
         <div className="section">
-          <label>Seleccione Categoria: </label>
+          <Link to="/">
+            <img
+              className="logo"
+              src={`/images/PolloAndinoLogo.webp`}
+              alt={"name"}
+              width={100}
+            />
+          </Link>
+        </div>
+        <div className="section centro">
+          <h4 className="seleccioneCategoria">Categoria: </h4>
           <select
             value={cartCtx.filter}
             ref={comboRef}
@@ -46,9 +52,21 @@ export default function TopBar() {
           </select>
         </div>
         <div className="section">
-          <Link to="/">Productos</Link> |{" "}
-          <img src={`/images/PolloAndinoCart.png`} alt={"name"} width={40} />
-          <Link to="/viewcart">Ver Carro ({numItems})</Link>
+          <div className="rigthSection">
+            <Link className="myLink" to="/viewcart">
+              <div className="carContainer">
+                <img
+                  className="carButton"
+                  src={carIcon}
+                  alt={"name"}
+                  width={30}
+                />
+                <div className="carNumberContainer">
+                  <p className="carNumber">{numItems}</p>
+                </div>
+              </div>
+            </Link>
+          </div>
         </div>
       </div>
     </div>

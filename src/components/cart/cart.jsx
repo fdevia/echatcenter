@@ -32,7 +32,7 @@ export default function Cart() {
 
   return (
     <div>
-      <table border="1">
+      <table>
         <thead>
           <tr>
             <th>Name</th>

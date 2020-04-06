@@ -7,9 +7,9 @@ export default function Store() {
   const cartCtx = useContext(CartContext);
   var products = productsg.filter((item) => item.categoria === cartCtx.filter);
   return (
-    <div>
+    <div className="row">
       {products.map((product) => (
-        <div key={product.sku}>
+        <div className="productContainer" key={product.sku}>
           <div style={{ marginTop: "1%" }}>
             <img
               src={`/images/${product.sku}.webp`}
